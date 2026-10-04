@@ -1,0 +1,5 @@
+(fp_lib_table
+	(version 7)
+	(lib (name "solderpads") (type "KiCad") (uri "${KIPRJMOD}/solderpads.pretty") (options "") (descr ""))
+	(lib (name "Kicad_Project_Files") (type "KiCad") (uri "G:/bldc driver new repo/BLDC_motor_controller_from_scratch/Kicad_Project_Files.pretty") (options "") (descr ""))
+)
