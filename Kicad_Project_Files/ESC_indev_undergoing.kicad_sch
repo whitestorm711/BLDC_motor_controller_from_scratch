@@ -9572,10 +9572,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "931f01dd-f4e6-48c0-88d9-60418c8ccb64")
+			(uuid "931f01dd-f4e6-48c0-88d9-60418c8ccb65")
 		)
 		(pin "2"
-			(uuid "6e00a8a1-b6d2-4c75-9464-3b91de50f492")
+			(uuid "6e00a8a1-b6d2-4c75-9464-3b91de50f493")
 		)
 		(instances
 			(project "ESC_indev_undergoing"
@@ -10803,7 +10803,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "39030a03-253b-48b6-a3ba-31a807afd5ed")
+			(uuid "39030a03-253b-48b6-a3ba-31a807afd5ee")
 		)
 		(instances
 			(project "ESC_indev_undergoing"
@@ -13642,7 +13642,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "39030a03-253b-48b6-a3ba-31a807afd5ed")
+			(uuid "39030a03-253b-48b6-a3ba-31a807afd5ef")
 		)
 		(instances
 			(project "ESC_indev_undergoing"
@@ -13802,7 +13802,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "03106137-682a-4254-a184-fface9c69c89")
+			(uuid "03106137-682a-4254-a184-fface9c69c8a")
 		)
 		(instances
 			(project "ESC_indev_undergoing"
@@ -14445,7 +14445,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "39030a03-253b-48b6-a3ba-31a807afd5ed")
+			(uuid "39030a03-253b-48b6-a3ba-31a807afd5f0")
 		)
 		(instances
 			(project "ESC_indev_undergoing"
@@ -16455,10 +16455,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "931f01dd-f4e6-48c0-88d9-60418c8ccb64")
+			(uuid "931f01dd-f4e6-48c0-88d9-60418c8ccb66")
 		)
 		(pin "2"
-			(uuid "6e00a8a1-b6d2-4c75-9464-3b91de50f492")
+			(uuid "6e00a8a1-b6d2-4c75-9464-3b91de50f494")
 		)
 		(instances
 			(project "ESC_indev_undergoing"
@@ -16744,10 +16744,10 @@
 			)
 		)
 		(pin "2"
-			(uuid "4c4f9311-5c7c-482b-b4de-5d1f2223cd1e")
+			(uuid "4c4f9311-5c7c-482b-b4de-5d1f2223cd1f")
 		)
 		(pin "1"
-			(uuid "489f41db-d3e6-409f-bf93-28536cb9d6fc")
+			(uuid "489f41db-d3e6-409f-bf93-28536cb9d6fd")
 		)
 		(instances
 			(project "ESC_indev_undergoing"
@@ -16768,7 +16768,6 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "cbd7ce26-a3d1-4179-b543-8408065af5c8")
 		(property "Reference" "R29"
 			(at 289.56 143.5099 0)
@@ -16782,7 +16781,7 @@
 			)
 		)
 		(property "Value" "330ohm"
-			(at 289.56 146.0499 0)
+			(at 290.576 148.844 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -17227,10 +17226,10 @@
 			)
 		)
 		(pin "2"
-			(uuid "09a00237-ca0d-4d61-9d5d-98847634d47f")
+			(uuid "09a00237-ca0d-4d61-9d5d-98847634d480")
 		)
 		(pin "1"
-			(uuid "7bcda595-b0df-4d81-967a-87b5df5cf404")
+			(uuid "7bcda595-b0df-4d81-967a-87b5df5cf405")
 		)
 		(instances
 			(project "ESC_indev_undergoing"
@@ -17659,10 +17658,10 @@
 			)
 		)
 		(pin "2"
-			(uuid "4c4f9311-5c7c-482b-b4de-5d1f2223cd1e")
+			(uuid "4c4f9311-5c7c-482b-b4de-5d1f2223cd20")
 		)
 		(pin "1"
-			(uuid "489f41db-d3e6-409f-bf93-28536cb9d6fc")
+			(uuid "489f41db-d3e6-409f-bf93-28536cb9d6fe")
 		)
 		(instances
 			(project "ESC_indev_undergoing"
@@ -18810,7 +18809,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "39030a03-253b-48b6-a3ba-31a807afd5ed")
+			(uuid "39030a03-253b-48b6-a3ba-31a807afd5f1")
 		)
 		(instances
 			(project "ESC_indev_undergoing"
@@ -19405,10 +19404,10 @@
 			)
 		)
 		(pin "2"
-			(uuid "191516ab-7d68-46d2-a8c3-2733c0f73451")
+			(uuid "191516ab-7d68-46d2-a8c3-2733c0f73452")
 		)
 		(pin "1"
-			(uuid "fa08a37b-4969-4335-bfd7-77d6f0b2bdef")
+			(uuid "fa08a37b-4969-4335-bfd7-77d6f0b2bdf0")
 		)
 		(instances
 			(project "ESC_indev_undergoing"
