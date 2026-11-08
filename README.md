@@ -1,84 +1,137 @@
-# ESC-from-Scratch
+# BLDC Motor Controller from Scratch
 
-Building a BLDC Electronic Speed Controller (ESC) completely from scratch while learning every concept from the basics.
+A three-phase brushless DC (BLDC) electronic speed controller (ESC) designed and built from the ground up as a self-learning project: custom PCB, discrete MOSFET power stage, and hand-written commutation firmware. No ESC reference designs or off-the-shelf motor-control libraries.
+
+The goal is not just a working controller, but a clear understanding of every layer: motor physics, power stage, gate driving, timing, and control.
+
+> **Status:** Sensorless open-loop trapezoidal control works and spins a BLDC motor. Closed-loop (back-EMF zero-crossing) commutation is the current focus.
+
+---
+
+## Table of Contents
+
+- [Features](#features)
+- [Hardware Overview](#hardware-overview)
+- [Firmware Overview](#firmware-overview)
+- [Repository Structure](#repository-structure)
+- [Getting Started](#getting-started)
+- [Roadmap](#roadmap)
+- [Learning Notes](#learning-notes)
+- [Known Issues](#known-issues)
+- [License](#license)
 
 ---
 
-# Goal
+## Features
 
-The goal of this project is not only to build a working ESC, but also to deeply understand how BLDC motors and ESCs work internally — including the hardware, control systems, and embedded programming involved.
+- Three half-bridge power stage built from discrete N-channel MOSFETs
+- Bootstrap-powered high-side gate drivers
+- Trapezoidal (six-step) commutation
+- Sensorless operation (back-EMF sensing planned via comparator/ADC)
+- Full KiCad schematic and PCB source, including the custom footprint library
+- Written documentation of the concepts learned along the way
 
-This roadmap will continue evolving as I learn and progress through the project.
+## Hardware Overview
 
----
-Document of what i have learned - https://docs.google.com/document/d/1BpeLRxeEXppZBD9K81JejwA0rQKnB6DB5yYJkA6p348/edit?usp=sharing
-Will be putting a Check mark on the roadmap goals i have already achieved 
+| Block | Details |
+|---|---|
+| Power stage | 3 half-bridges, discrete MOSFETs |
+| Gate drivers | High/low-side drivers with bootstrap circuits |
+| Current sensing | Shunt-based current sense amplifier |
+| Power supply | Buck regulators to derive logic rails from the battery bus |
+| Design tool | KiCad |
 
-# Roadmap
+> TODO: fill in exact part numbers, supply voltage range, and max current once the board revision is final.
 
-## 1. Understanding the Basics☑️
-- Learn how BLDC motors work
-- Learn how ESCs control BLDC motors
-- Understand commutation and rotating magnetic fields
-- Study basic inverter structures
+Key design topics covered: dead time, bootstrap capacitor sizing, MOSFET switching behaviour, and phase-node layout.
 
---
+## Firmware Overview
 
-## 2. Choosing the ESC Architecture ☑️
-- Decide the type of ESC to build
-- Compare:
-  - Sensored vs Sensorless
-  - Open-loop vs Closed-loop
-  - Trapezoidal vs FOC control
+- **MCU:** STM32F411 (STM32 HAL / bare-metal, update as appropriate)
+- **Control method:** six-step trapezoidal commutation with PWM
+- **Current mode:** sensorless open-loop; closed-loop zero-cross detection in progress
+- **Timing:** hardware timers generate complementary PWM with dead time; commutation steps advance on timer/interrupt events
 
---
+> TODO: add the toolchain (STM32CubeIDE / PlatformIO / Makefile) and the pin mapping table (phase PWM outputs, enable pins, ADC/comparator inputs).
 
-## 3. Building a Sensorless Open-Loop ESC 
-### Learning Goals
-- Understanding dead time ☑️
-- Gate driver structure and MOSFET switching☑️
-- Generating a rotating magnetic field☑️
-- PWM generation and commutation logic☑️
+## Repository Structure
 
-### Software Goals
-- Writing basic ESC firmware☑️
-- Optimizing timing and code execution☑️
-- Learning interrupt-based control
+```
+BLDC_motor_controller_from_scratch/
+├── Firmware/                    # MCU source code (commutation, PWM, control logic)
+├── Kicad_Project_Files/         # KiCad schematic and PCB project
+├── Kicad_Project_Files.pretty/  # Custom footprint library used by the project
+├── ESC.docx                     # Written notes / design documentation
+└── README.md                    # You are here
+```
 
-### SENSORLESS OPEN-LOOP ESC COMPLETED
+### Suggested structure as the project grows
 
---
+```
+├── Hardware/
+│   ├── kicad/                   # Project files
+│   ├── footprints.pretty/       # Custom footprints
+│   ├── gerbers/                 # Fabrication outputs per revision
+│   └── bom/                     # BOM and assembly files
+├── Firmware/
+│   ├── Core/ (or src/, include/)
+│   └── README.md                # Build/flash instructions
+├── Simulation/                  # Commutation / motor model tests (no hardware needed)
+├── Docs/
+│   ├── images/                  # Schematic PDFs, scope captures, board photos
+│   └── notes/                   # Learning notes, design decisions
+├── LICENSE
+└── README.md
+```
 
-## 4. Building a Sensorless Closed-Loop ESC
-### Learning Goals
-- Sampling the floating phase using:
-  - Comparator
-  - ADC
-- Back-EMF detection and zero-crossing
+## Getting Started
 
-### Control Goals
-- Using comparator/ADC readings for commutation
-- Triggering interrupts based on zero-cross events
-- Improving startup and synchronization
+### Hardware
 
+1. Open the project in **KiCad** from `Kicad_Project_Files/`.
+2. Add the footprint library `Kicad_Project_Files.pretty` under *Preferences → Manage Footprint Libraries* if footprints show as missing.
+3. Review the schematic and run ERC/DRC before ordering boards.
 
---
+### Firmware
 
-## 5. Building a Bi-Directional ESC
+1. Open the `Firmware/` project in your STM32 toolchain.
+2. Build and flash through an ST-Link (SWD).
+3. **Safety:** test first with a current-limited bench supply and no propeller or load attached.
 
+> Warning: Power stages can fail destructively when commutation or dead-time logic is wrong. Validate firmware on a simulator or with strict current limiting before connecting a full battery.
 
---
+## Roadmap
 
-## 6. Advanced Motor Control (Long-Term Goal)
+- [x] **1. Understanding the basics**: BLDC operation, commutation, rotating fields, inverter structures
+- [x] **2. Choosing the ESC architecture**: sensored vs sensorless, open vs closed loop, trapezoidal vs FOC
+- [ ] **3. Sensorless open-loop ESC**
+  - [x] Dead time
+  - [x] Gate driver structure and MOSFET switching
+  - [x] Generating a rotating magnetic field
+  - [x] PWM generation and commutation logic
+  - [x] Basic ESC firmware
+  - [x] Timing and code optimisation
+  - [ ] Interrupt-based control
+- [ ] **4. Sensorless closed-loop ESC**
+  - [ ] Floating-phase sampling (comparator / ADC)
+  - [ ] Back-EMF detection and zero-crossing
+  - [ ] Zero-cross interrupt commutation
+  - [ ] Improved startup and synchronisation
+- [ ] **5. Bi-directional ESC**
+- [ ] **6. Advanced motor control (long term)**
+  - [ ] Field-Oriented Control: Clarke/Park transforms, SVPWM, current loops
+  - [ ] Position control: encoder feedback, torque and position loops
 
-### Field-Oriented Control (FOC)
-- Clarke and Park transforms
-- Space Vector PWM (SVPWM)
-- Current control loops
+## Learning Notes
 
-### Position Control
-- Encoder/sensor feedback
-- Torque and position control
-- Advanced closed-loop control systems
--
+- [Learning document (Google Docs)](https://docs.google.com/document/d/1BpeLRxeEXppZBD9K81JejwA0rQKnB6DB5yYJkA6p348/edit?usp=sharing)
+- [`ESC.docx`](ESC.docx): design documentation in the repo
 
+## Known Issues
+
+- Open-loop commutation spins the motor but not smoothly; commutation timing is being refined.
+- Closed-loop startup (open-loop ramp, then handover to back-EMF) is not implemented yet.
+
+## License
+
+> TODO: add a `LICENSE` file (MIT is a common choice for hobby hardware/firmware; consider CERN-OHL for the hardware files).
