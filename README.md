@@ -1,4 +1,4 @@
-# BLDC Controller v1 — ESC from Scratch
+# BLDC Controller v1 — BLDC Controller from Scratch
 
 An ESP32-based three-phase brushless DC (BLDC) motor controller designed from the ground up as a self-learning project: custom 2-layer PCB, discrete MOSFET inverter, bootstrap gate drivers, per-phase current sensing, back-EMF sensing and hand-written commutation firmware.
 
