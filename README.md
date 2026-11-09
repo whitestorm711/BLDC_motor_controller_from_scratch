@@ -181,4 +181,4 @@ Designed by **Harshal Gawande** and **Arnav Patil**.
 
 ## License
 
-> TODO: add a `LICENSE` file (MIT is common for hobby firmware; consider CERN-OHL for the hardware files).
+> TODO
